@@ -109,11 +109,9 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .hero h1 em{font-style:normal;color:var(--gold)}
 
 /* film-strip frames (the 5 rules) */
-.strip{background:var(--chalk);padding:22px 0;position:relative;margin-top:24px;border-radius:var(--r)}
-.strip:before,.strip:after{content:"";position:absolute;left:10px;right:10px;height:12px;background:radial-gradient(circle at 12px 6px,var(--ink) 0 4.5px,transparent 5px) 0 0/28px 12px repeat-x}
-.strip:before{top:4px}.strip:after{bottom:4px}
-.frames{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;padding:0 10px}
-.frame{background:var(--ink);color:var(--chalk);text-decoration:none;padding:18px 16px 16px;min-height:250px;display:flex;flex-direction:column;gap:10px;border-radius:8px;transition:transform .2s}
+.strip{margin-top:28px}
+.frames{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.frame{background:var(--ink-2);border:1px solid var(--line-2);color:var(--chalk);text-decoration:none;padding:18px 16px 16px;min-height:250px;display:flex;flex-direction:column;gap:10px;border-radius:var(--r);transition:transform .2s}
 .frame:hover{transform:translateY(-4px)}
 .frame:hover .num{color:var(--gold)}
 .frame .top{display:flex;align-items:center;justify-content:space-between}
@@ -123,7 +121,7 @@ header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backgroun
 .frame h3{font-size:19px}
 .frame p{font-size:13.5px;line-height:1.45;color:var(--chalk-2)}
 .frame .go{margin-top:auto;font:700 11px var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
-.frame.on{outline:3px solid var(--gold);outline-offset:-3px}
+.frame.on{border-color:var(--gold)}
 @media(max-width:960px){.frames{grid-template-columns:1fr 1fr}.frame{min-height:0}}
 @media(max-width:520px){.frames{grid-template-columns:1fr}}
 
@@ -400,8 +398,8 @@ footer .dl:hover{background:var(--gold)}
 .dp:hover,.tile:hover,.stat:hover,.navtiles a:hover,.scene:hover,.member:hover,.used a:hover,.why>div:hover{transform:translateY(-3px);box-shadow:0 14px 34px -16px var(--glow)}
 .pcard:hover{transform:translateY(-4px)}
 .dp:hover{border-color:var(--acc,var(--gold))}
-.frame{transition:background .25s ease,transform .25s ease}
-.frame:hover{transform:translateY(-3px)}
+.frame{transition:background .25s ease,transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.frame:hover{transform:translateY(-3px);box-shadow:0 14px 34px -16px var(--glow);border-color:var(--gold)}
 .hero h1 em{position:relative;display:inline-block}
 .hero h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.06em;height:.07em;background:var(--gold);transform-origin:left;transform:scaleX(0);animation:sweep .9s .5s cubic-bezier(.2,.7,.2,1) forwards}
 @keyframes sweep{to{transform:scaleX(1)}}
@@ -590,7 +588,7 @@ const SCQ = {1:[['Have you picked one signature element that will sell the film?
 const $ = s => document.querySelector(s);
 const esc = s => String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
 const acc = id => FILMS[id].budget === 'b' ? 'var(--gold)' : 'var(--red)';
-const poster = id => `<div class="poster"><img src="posters/${id}.jpg" alt="${esc(FILMS[id].name)} poster" loading="lazy"></div>`;
+const poster = id => `<div class="poster"><img src="./${id}.jpg" alt="${esc(FILMS[id].name)} poster" loading="lazy"></div>`;
 const badge = s => !s ? '' : `<span class="badge ${s==='SMACC original'?'orig':'ind'}">${esc(s)}</span>`;
 
 function chart(c){
@@ -674,7 +672,7 @@ function rule(n, sub){
       <ol class="steps">${t.steps.map(s=>`<li><h4>${s[0]}</h4><p>${s[1]}</p></li>`).join('')}</ol>`;
   } else if(si===1){
     body = `<p class="lede" style="margin-bottom:22px">The same rule at two very different budgets.</p>
-      <div class="onset">${d.ex.map(([id,h,p,m])=>{const f=FILMS[id];const s=f.budget==='s';return `<a class="scene ${s?'s':''}" href="#film-${id}"><img src="posters/${id}.jpg" alt="${esc(f.name)} poster" loading="lazy"><div>
+      <div class="onset">${d.ex.map(([id,h,p,m])=>{const f=FILMS[id];const s=f.budget==='s';return `<a class="scene ${s?'s':''}" href="#film-${id}"><img src="./${id}.jpg" alt="${esc(f.name)} poster" loading="lazy"><div>
         <div class="tag">${s?'Small budget':'Blockbuster'} · ${esc(f.name)}</div><h4>${esc(h)}</h4><p>${esc(p)}</p>
         <div class="big">${esc(m)}</div><span class="go">Open the case study →</span></div></a>`}).join('')}</div>`;
   } else if(si===2){

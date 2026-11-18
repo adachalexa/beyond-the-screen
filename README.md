@@ -3,13 +3,18 @@
 Five pre-production marketing rules shown on six film campaigns. SMACC Fall 2026 research, University of Connecticut.
 
 ## Publish on GitHub Pages
-1. Create a new repository on GitHub (for example `beyond-the-screen`).
-2. Upload everything in this folder to the repository root (`index.html` must be at the top level, not inside a subfolder).
-3. Go to **Settings → Pages**, set **Source** to "Deploy from a branch", choose **main** and **/ (root)**, then Save.
-4. After a minute or two the site is live at `https://<your-username>.github.io/beyond-the-screen/`.
+1. Upload every file here to the top level of the repository (no folders).
+2. Settings → Pages → Source: "Deploy from a branch" → main, / (root) → Save.
+3. The site goes live at https://<your-username>.github.io/<repo-name>/
 
 ## Files
-- `index.html` — the whole site (pages, styles, data and scripts)
-- `posters/` — film posters
-- `team/` — team headshots (add yours; see team/README.txt)
-- `playbook-deck.pdf` — the deck linked from the footer button (replace with the final deck, same file name)
+- index.html: the whole site
+- odyssey.jpg, barbie.jpg, sinners.jpg, obsession.jpg, aby.jpg, backrooms.jpg: film posters
+- playbook-deck.pdf: the deck behind the footer button (replace with the final deck, same file name)
+
+## Adding the team
+Upload headshots at the top level (e.g. alexa.jpg). In index.html, find "const TEAM =" and replace the placeholder list with:
+const TEAM = [
+  {name:'Full Name', role:'Research lane', img:'alexa.jpg', li:'https://www.linkedin.com/in/...'},
+  ...8 people...
+];
